@@ -1,0 +1,67 @@
+{
+  "name": "dynamsoft-javascript-barcode",
+  "version": "7.2.3-v2",
+  "description": "Dynamsoft Barcode Reader JS is a recognition SDK which enables you to embed barcode reading functionality in your web, desktop, and mobile applications. With a few lines of JavaScript code, you can develop a robust application to scan a linear barcode, QR Code, DaraMatrix, PDF417, and Aztec Code.",
+  "files": [
+    "/dist/class",
+    "/dist/enum",
+    "/dist/dbr.js",
+    "/dist/dbr-*.worker.js",
+    "/dist/dbr-*.wasm.js",
+    "/dist/dbr-*.wasm",
+    "/dist/dbr.d.ts",
+    "/dist/dbr-*.d.ts"
+  ],
+  "homepage": "https://www.dynamsoft.com/Products/barcode-recognition-javascript.aspx",
+  "main": "dist/dbr.js",
+  "types": "dist/dbr.d.ts",
+  "author": {
+    "name": "Dynamsoft",
+    "url": "https://www.dynamsoft.com"
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dynamsoft-dbr/javascript-barcode"
+  },
+  "maintainers": [
+    {
+      "name": "Dynamsoft",
+      "email": "support@dynamsoft.com"
+    }
+  ],
+  "keywords": [
+    "HTML5 barcode",
+    "JavaScript barcode",
+    "Web barcode",
+    "barcode",
+    "PDF417",
+    "QRCode",
+    "Aztec Code",
+    "WebAssembly",
+    "SDK",
+    "Linear barcode",
+    "1D barcode"
+  ],
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "build:node": "webpack --config webpack.config.node.js",
+    "build:doc": "typedoc --out \"doc/api reference\" --mode file --excludeExternals --excludeNotExported --excludePrivate --excludeProtected --name \"Dynamsoft BarcodeReader SDK for Javascript\"",
+    "lint": "eslint ./src/ --ext .ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "awesome-typescript-loader": "^5.2.1",
+    "fork-ts-checker-webpack-plugin": "^1.5.0",
+    "localforage": "^1.7.3",
+    "ts-loader": "^6.0.4",
+    "typedoc": "^0.15.0",
+    "typescript": "^3.6.2",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {}
+}
