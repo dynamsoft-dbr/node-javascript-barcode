@@ -26,6 +26,10 @@ export default class BarcodeReader {
      */
     static BrowserDetect: any;
     /**
+     * Detect environment and get a report.
+     */
+    static detectEnvironment(): Promise<any>;
+    /**
      * @ignore
      */
     static _workerName: string;

@@ -1,6 +1,6 @@
 let Dynamsoft = require('../../dist/dbr.js');
 // Please visit https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx to get trial license.
-Dynamsoft.BarcodeReader.productKeys = 'PRODUCT-KEYS';
+Dynamsoft.BarcodeReader.productKeys = 't0068NQAAAKH0LdHHC8xibakjXr3mPAV9W+/ClrHC92sdJqxViD4DwHHFLKVs7JinjogEyJr13vEl7pWyK7Z6o+CcX2EgjcY=';
 
 (async()=>{
     console.log("============== create reader ==============");

@@ -1,110 +1,94 @@
 # Dynamsoft JavaScript Barcode SDK for Node
 
-Dynamsoft Barcode Reader for Node.js. Also see [Dynamsoft JavaScript Barcode SDK for Web](https://github.com/dynamsoft-dbr/javascript-barcode/).
+>  This library is the Node.js edition of Dynamsoft Barcode Reader. If you are looking to implement barcode reading feature in a web page, please check out the other library [Dynamsoft JavaScript Barcode SDK for Web](https://github.com/dynamsoft-dbr/javascript-barcode/).
 
-Support lots of 1D/2D barcode. You can find full support type list in [Dynamsoft Barcode Reader](https://www.dynamsoft.com/Products/Dynamic-Barcode-Reader.aspx).
+Both 1D and 2D barcode symbiology are supported including the popular `Code 39`, `EAN-13`, `QR`, `PDF417`, etc.+  Find the full list [here](https://www.dynamsoft.com/Products/Dynamic-Barcode-Reader.aspx).
 
-Mainly Support Node.js version >= LTS 12.
+The library is based on `webassembly` which has been an official feature of Node.js since `LTS 8`. If you are using Node.js LTS 8 and have no plan to upgrade it, check out [how to use the library in Node.js LTS 8](#how-to-use-the-library-in-node.js-lts-8). That said, Node.js version >= LTS 12 is recommended because the library will try to use `worker_threads` when decoding. 
 
-By use lower level API. Can support Node.js LTS 8. We will talk it later.
+## Get Started
 
-## How to Use
+* Check your Node.js version
 
-Check node version.
 ```shell
 > node -v
 v12.13.1
 ```
-Because SDK use `worker_threads` to decode in anthor thread. So we need Node.js LTS 12.
 
-The `webassembly` support is from Node LTS 8. We will talk later if you want use SDK in Node.js LTS 8.
+* Installs the library from npm
 
-<br>
-
-Get package from npm.
-You can also get it from dist.
 ```shell
 > npm install dynamsoft-node-barcode --save
 ```
-The main js is `/dist/dbr.js`.
+* Create a `js` file and include the library
 
-<br>
-
-Create a `js` file and start coding.
-
-Require the main js.
-
-Use npm package you can require in this way:
 ```js
 let Dynamsoft = require("dynamsoft-node-barcode");
 ```
 
-Any case you can require in this way:
+The following also works
 ```js
 let Dynamsoft = require("path/to/dist/dbr.js");
 ```
 
-<br>
+> **Note**
+> The library uses `Promise` a lot, so it's recommended to write the related code in a `async` function so that later you can use `await`
+>
+> ```js
+> (async()=>{
+> // many work will done here
+> })();
+> ```
 
-The SDK use a lot of `Promise`. So why not write code in a `async` function so you can use `await`?
-```js
-(async()=>{
-    // many work will done here
-})();
-```
-Create reader instance.
+* Create an instance of the reader
+
 ```js
 let reader = await Dynamsoft.BarcodeReader.createInstance();
 ```
-Decode a file.
+
+* Decode a file by its path
+
 ```js
 let results = await reader.decode('path/to/sample.png');
 ```
-You can get `sample.png` in `/example`.
 
-Or you can use a web image instead:
+Or just decode a file by its URL
+
 ```js
 let results = await reader.decode('https://demo.dynamsoft.com/dbr/img/AllSupportedBarcodeTypes.png');
 ```
-The SDK support image type of `png`, `jpg`, `bmp`, `gif`.
-
->   If you want decode other type like `pdf`, you need other tool to convert it. `pdf` tool develop by `Dynamsoft` will come soon.
+> **NOTE**  
+> The following image formats are supported by default: `png`, `jpg`, `bmp`, `gif`. 
 >
->   If you you want decode raw image from camera or others with format like `RGBA`.
->   You need use `deocdeBuffer`.
->   See [C++ API decodeBuffer](https://www.dynamsoft.com/help/Barcode-Reader/class_c_barcode_reader.html) for more details.
+> If you want to decode other files like `pdf`'s, you need to convert them to images first. Contact [Dynamsoft Support](https://www.dynamsoft.com/Company/Contact.aspx) to find out more.
+>
+> If you want to decode raw image data (`RGBA`) from sources like a camera. You can use the API `deocdeBuffer`. Check out [C++ API decodeBuffer](https://www.dynamsoft.com/help/Barcode-Reader/class_c_barcode_reader.html) for more details.
 
-Show results.
+* Print out the results
+
 ```js
 for(let result of results){
     console.log(result.barcodeText);
 }
 ```
 
-<br>
+* Run your code.
 
-Run your code.
 ```shell
 > node your-code.js
 ```
 
-<br>
-
-Oh, don't forget to set a productKey. Please visit https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx to get trial license.
+Last not but least, don't forget to set a `productKey`! If you don't have a key yet, click [here](https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx) to get one.
 
 ```js
 Dynamsoft.BarcodeReader.productKeys = 'PRODUCT-KEYS';
 ```
 
-Then execute again.
-
-<br>
-
-Full code with some modification:
+**Full code**
 
 ```js
 let Dynamsoft = require('dynamsoft-node-barcode');
-// Please visit https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx to get trial license.
+// Please visit https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx to get a trial license
 Dynamsoft.BarcodeReader.productKeys = 'PRODUCT-KEYS';
 
 (async()=>{
@@ -120,7 +104,7 @@ Dynamsoft.BarcodeReader.productKeys = 'PRODUCT-KEYS';
 
 ## Change Decoding Settings
 
-The API is simlar as other version.
+To set up the library for decoding, use the APIs `getRuntimeSettings` & `updateRuntimeSettings`.
 
 ```js
 let settings = await reader.getRuntimeSettings();
@@ -128,19 +112,22 @@ settings.expectedBarcodesCount = 999;
 await reader.updateRuntimeSettings();
 ```
 
-See [Barcode reading settings Guide](https://www.dynamsoft.com/help/Barcode-Reader/devguide/Guide/BarcodeReadingSettings.html#Struct) for basic.
+See [Barcode reading settings Guide](https://www.dynamsoft.com/help/Barcode-Reader/devguide/Guide/BarcodeReadingSettings.html#Struct) for basic usage.
 
-See [C++ API RuntimeSettings](https://www.dynamsoft.com/help/Barcode-Reader/structtag_public_runtime_settings.html) for details.
+See [C++ API RuntimeSettings](https://www.dynamsoft.com/help/Barcode-Reader/structtag_public_runtime_settings.html) for more details.
 
-Vist [DBR Main Online Demo](https://demo.dynamsoft.com/dbr/barcodereaderdemo.aspx) to test a suitable settings.
+To find out which settings best suit your usage scenario, visit [DBR Main Online Demo](https://demo.dynamsoft.com/dbr/barcodereaderdemo.aspx).
 
-Ask [Dynamsoft support](https://www.dynamsoft.com/Company/Contact.aspx) for more help.
+Any questions, please contact [Dynamsoft support](https://www.dynamsoft.com/Company/Contact.aspx).
 
-## Use in Node.js LTS 8
 
-This way the decoding is in main thread.
 
-Basic decoding.
+## How to use the library in Node.js LTS 8
+
+Node.js LTS 8 doesn't support `worker_threads`, so the decoding will happen in the same main thread which means it's a blocking operation. The following code snippets demonstrate the basic usage.
+
+**Decode**
+
 ```js
 var dbr = require('path/to/dist/dbr-<version>.node.wasm.js');
 dbr.onRuntimeInitialized = ()=>{
@@ -153,7 +140,8 @@ dbr.onRuntimeInitialized = ()=>{
 };
 ```
 
-Change settings.
+**Change settings**
+
 ```js
 var settings = JSON.parse(reader.getRuntimeSettings());
 settings.expectedBarcodesCount = 999;
