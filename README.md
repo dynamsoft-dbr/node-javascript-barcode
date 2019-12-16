@@ -19,7 +19,7 @@ Because SDK use `worker_threads` to decode in anthor thread. So we need Node.js 
 
 The `webassembly` support is from Node LTS 8. We will talk later if you want use SDK in Node.js LTS 8.
 
----
+<br>
 
 Get package from npm.
 You can also get it from dist.
@@ -28,7 +28,7 @@ You can also get it from dist.
 ```
 The main js is `/dist/dbr.js`.
 
----
+<br>
 
 Create a `js` file and start coding.
 
@@ -44,7 +44,7 @@ Any case you can require in this way:
 let Dynamsoft = require("path/to/dist/dbr.js");
 ```
 
----
+<br>
 
 The SDK use a lot of `Promise`. So why not write code in a `async` function so you can use `await`?
 ```js
@@ -81,14 +81,14 @@ for(let result of results){
 }
 ```
 
----
+<br>
 
 Run your code.
 ```shell
 > node your-code.js
 ```
 
----
+<br>
 
 Oh, don't forget to set a productKey. Please visit https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx to get trial license.
 
@@ -98,7 +98,7 @@ Dynamsoft.BarcodeReader.productKeys = 'PRODUCT-KEYS';
 
 Then execute again.
 
----
+<br>
 
 Full code with some modification:
 
