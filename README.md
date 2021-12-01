@@ -1,4 +1,4 @@
-# Dynamsoft JavaScript Barcode SDK for Node
+# Dynamsoft JavaScript Barcode SDK for Node (Deprecated, Use [dynamsoft-javascript-barcode](https://github.com/Dynamsoft/javascript-barcode/blob/main/README.NODE.md) instead)
 
 >  This library is the Node.js edition of Dynamsoft Barcode Reader. If you are looking to implement barcode reading feature in a web page, please check out the other library [Dynamsoft JavaScript Barcode SDK for Web](https://github.com/dynamsoft-dbr/javascript-barcode/).
 
